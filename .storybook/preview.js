@@ -3,6 +3,7 @@ import App from '../pages/_app.mdx';
 import { pageProps } from './constants';
 import '../styles/styles.scss';
 import '../styles/tokens.scss';
+import { ThemeProvider } from '../providers/themeprovider';
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -23,7 +24,11 @@ const preview = {
 };
 
 export const decorators = [
-  Story => <App Component={Story} pageProps={pageProps} />,
+  Story => (
+    <ThemeProvider>
+      <App Component={Story} pageProps={pageProps} />
+    </ThemeProvider>
+  ),
 ];
 
 const OriginalNextImage = NextImage.default;
